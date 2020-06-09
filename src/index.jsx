@@ -20,9 +20,7 @@ const store = createStore(rootStore, sessionState(), window.__REDUX_DEVTOOLS_EXT
 /* 页面刷新或关闭前更新会话存储 */
 window.onbeforeunload = () => {
   const state = store.getState();
-  if (sessionStorage.getItem('state')) {
-    sessionStorage.setItem('state', JSON.stringify(state));
-  }
+  sessionStorage.setItem('state', JSON.stringify(state));
 };
 
 render(
