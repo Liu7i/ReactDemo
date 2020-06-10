@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updataUser } from '../../actions';
-import styles from './index.module.less';
+import styles from './index.less';
 
 const Home = (props) => {
     const myIpt = useRef();
@@ -21,7 +21,7 @@ const Home = (props) => {
                 updataUser(myIpt.current.value);
                 myIpt.current.value = '';
             }}>改名</button>
-            <span className={styles.Red}>25145454</span>
+            <span className={styles.qbb}>25145454</span>
         </div>
     )
 }
