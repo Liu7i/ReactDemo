@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updataUser } from '../../actions';
+import { updataUser, addMsg } from '../../actions';
 import styles from './index.less';
 
 const Home = (props) => {
     const myIpt = useRef();
-    const { user, updataUser } = props;
+    const { user, updataUser, addMsg } = props;
 
     return (
         <div>
@@ -22,6 +22,8 @@ const Home = (props) => {
                 myIpt.current.value = '';
             }}>改名</button>
             <span className={styles.qbb}>25145454</span>
+            <br />
+            <button type='button' onClick={addMsg}>消息提示</button>
         </div>
     )
 }
@@ -31,7 +33,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    updataUser: text => dispatch(updataUser(text))
+    updataUser: text => dispatch(updataUser(text)),
+    addMsg: () => dispatch(addMsg({ method: 'success', text: '新增成功！' })),
 })
 
 export default connect(

@@ -4,6 +4,7 @@ import Home from './Home';
 import User from './User';
 import Message from './Message';
 import Page404 from './Page404';
+import MessageBox from './MessageBox'; /* 消息弹出框组件 */
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         {/* 404页面 */}
         <Route component={Page404}></Route>
       </Switch>
+      <MessageBox/>
     </Router>
   );
 }
