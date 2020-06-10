@@ -5,6 +5,7 @@ import { createStore } from 'redux';
 import rootStore from './reducers';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
+import './normalize.css';
 
 /* 尝试获取会话存储 */
 const sessionState = () => {
