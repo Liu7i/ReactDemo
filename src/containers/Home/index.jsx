@@ -1,37 +1,47 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updataUser } from '../../actions';
-import styles from './index.less';
+import { updataTitle, updataSearch } from '../../actions';
 
-const Home = (props) => {
-    const myIpt = useRef();
-    const { user, updataUser } = props;
+const Home = ({ updataTitle, history, updataSearch }) => {
+
+    const searchIpt = useRef();/* 搜索框ref */
+
+    useEffect(() => {/* 修改标题 */
+        updataTitle('首页');
+    }, [updataTitle])
 
     return (
         <div>
-            首页
-            <Link to={{ pathname: '/user', query: { test: '路由跳转传参' } }}>前往个人中心</Link>
-            <Link to={{ pathname: '/message/1' }}>前往文章1</Link>
-            <Link to={{ pathname: '/message/2' }}>前往文章2</Link>
+            这是首页
             <br />
-            当前用户：{user.name}
-            <input ref={myIpt} type="text" />
-            <button onClick={() => {
-                updataUser(myIpt.current.value);
-                myIpt.current.value = '';
-            }}>改名</button>
-            <span className={styles.qbb}>25145454</span>
+            <span className="inter">
+                <Link to={{ pathname: '/user', query: { test: '路由跳转传参' } }}>前往个人中心</Link>
+                <Link to={{ pathname: '/blog/1' }}>前往博客1</Link>
+                <Link to={{ pathname: '/blog/2' }}>前往博客2</Link>
+            </span>
+            <br />
+            <input type="text" ref={searchIpt} />
+            <button type="button"
+                onClick={() => {
+                    const searchTxt = searchIpt.current.value.trim();
+                    if (searchTxt) {
+                        updataSearch(searchTxt);
+                        history.push({ pathname: '/search' })
+                    }
+                }}
+            >搜索</button>
         </div>
     )
 }
 
 const mapStateToProps = state => ({
-    user: state.user
+
 })
 
 const mapDispatchToProps = dispatch => ({
-    updataUser: text => dispatch(updataUser(text))
+    updataTitle: text => dispatch(updataTitle(text)),
+    updataSearch: text => dispatch(updataSearch(text)),
 })
 
 export default connect(

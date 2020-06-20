@@ -6,6 +6,7 @@ import rootStore from './reducers';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 import './normalize.css';
+import './index.css';
 
 /* 尝试获取会话存储 */
 const sessionState = () => {

@@ -1,15 +1,29 @@
-import React, { useEffect } from 'react';
+/**
+ * 404页面
+ * @time 2020.6.20
+ */
 
-const Page404 = (props) => {
-    const { history } = props;
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { updataTitle } from '../actions';
+
+const Page404 = ({history,updataTitle}) => {
+
+    useEffect(()=>{
+        updataTitle('404');
+    },[updataTitle])
 
     useEffect(() => {
+        let timer;
         const GoBack = () => {
-            setTimeout(() => {
+            timer = setTimeout(() => {
                 history.goBack();
             }, 2000)
         };
         GoBack();
+        return ()=>{
+            clearTimeout(timer)
+        }
     }, [history])
 
     return (
@@ -21,4 +35,14 @@ const Page404 = (props) => {
     )
 }
 
-export default Page404;
+const mapStateToProps = () => ({
+    
+})
+
+const mapDispatchToProps = dispatch => ({
+    updataTitle: text => dispatch(updataTitle(text)),
+})
+
+export default connect(
+    mapStateToProps, mapDispatchToProps
+)(Page404);
